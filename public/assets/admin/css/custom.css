@@ -1,0 +1,41 @@
+.sidebar-nav ul li a {
+    line-height: 1.2;
+}
+small{
+    font-size: 10px;
+}
+.dataTables_empty{
+    text-align: center;
+}
+.logo-icon{
+    width: 60px;
+}
+.topbar ul.dropdown-user li .dw-user-box {
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+}
+.topbar ul.dropdown-user li .dw-user-box .u-img {
+    width: 60px;
+    display: inline-block;
+    vertical-align: top;
+}
+.topbar ul.dropdown-user li .dw-user-box .u-text {
+    display: inline-block;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.dropify-wrapper .dropify-message p {
+    text-align: center;
+}
+ .footer {
+    background: #263238;
+}
+.actionDrop{
+    position: relative;
+}

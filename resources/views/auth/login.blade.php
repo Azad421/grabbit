@@ -4,7 +4,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4 col-10">
-                <div class="card">
+                @foreach(['danger', 'warning', 'success', 'info'] as $msg)
+                    @if(session('alert-'.$msg))
+                        <div class="alert alert-{{ $msg }} alert-dismissible fade show">{{ session('alert-'.$msg) }}  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+                    @endif
+                @endforeach
+                <div class="card login">
                     <div class="card-header">{{ __('Login') }}</div>
 
                     <div class="card-body">
@@ -15,7 +20,7 @@
                                 <input id="email" type="email"
                                        class="form-control @error('email') is-invalid @enderror" name="email"
                                        placeholder="Email"
-                                       value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                       value="{{ old('email') }}" autocomplete="email" autofocus>
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">

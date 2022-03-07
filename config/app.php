@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'GrabbIT'),
+    'copyright' => env('APP_COPYRIGHT', '@ 2022 All Rights are Reserved By GrabbIT'),
 
     /*
     |--------------------------------------------------------------------------

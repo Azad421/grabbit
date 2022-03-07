@@ -2,6 +2,9 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckEmployee;
+use App\Http\Middleware\CheckJobSeeker;
+use App\Http\Middleware\CheckUserRule;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -54,7 +57,10 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
+        'rule.employee' => CheckEmployee::class,
+        'rule.jobSeeker' => CheckJobSeeker::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
+        'adminAuth' => \App\Http\Middleware\AdminAuthenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,

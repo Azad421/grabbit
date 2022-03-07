@@ -27,7 +27,7 @@ class VerificationController extends Controller implements MustVerifyEmail
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::LOGIN;
 
     /**
      * Create a new controller instance.

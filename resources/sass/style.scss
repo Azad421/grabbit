@@ -1,0 +1,397 @@
+$primary-color: #270082;
+$white: #ffffff;
+$primary-color-btn: #30029b;
+$second-background-color: #ECF1F4;
+$border-color: #6c757d;
+$black: #000000;
+main {
+    //height: 1000px;
+}
+figure{
+    margin-bottom: 0;
+}
+.fa-solid, .fa-regular {
+    font-size: 1rem;
+}
+
+.primary-text {
+    color: $primary-color;
+}
+.primary-bg {
+    background: $primary-color;
+}
+
+.second-bg {
+    background: $second-background-color;
+}
+
+p {
+    margin-bottom: 0.5rem;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h3 {
+        color: $primary-color;
+    }
+}
+
+.primary-btn {
+    background: $primary-color-btn;
+    color: white;
+    padding: .8rem 1rem;
+    transition: .3s ease;
+    border: 1px solid $primary-color-btn;
+
+    &:hover {
+        background: $primary-color;
+        border-color: $primary-color;
+        color: $white;
+    }
+}
+
+.navbar {
+    transition: 0.3s ease;
+
+    &.fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9;
+        box-shadow: 0px 3px 15px 5px #1a1e2138;
+    }
+
+    .navbar-brand {
+        .brand-logo {
+            width: 60px;
+        }
+    }
+}
+
+.navbar-nav {
+    .nav-item {
+        .nav-link {
+            transition: 0.3s ease;
+            border-radius: 5px;
+            line-height: 1;
+            padding: 0.8rem 1rem;
+
+            &:hover {
+                background: $primary-color;
+                color: $white;
+            }
+        }
+    }
+}
+
+.homeBanner {
+    background: $primary-color;
+
+    .homeslider {
+        .sliderItem {
+            color: $white;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 8rem 3rem 8rem;
+            min-height: 50vh;
+        }
+
+        .owl-dots {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            .sliderItem {
+                padding: 2rem 0rem 3rem 0rem;
+            }
+        }
+    }
+}
+
+.howWorks {
+    .howWorks-div {
+        text-align: center;
+        background: #ffffff;
+        padding: 2rem;
+        box-shadow: 2px 2px 11px 0px #81818138;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        .howWorks-icon {
+            margin-bottom: 1rem;
+            color: $primary-color;
+
+            i {
+                font-size: 3rem;
+            }
+        }
+
+        .joinNow {
+            color: $primary-color-btn;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+    }
+}
+
+.categories {
+    background: $second-background-color;
+    overflow: hidden;
+
+    .search-div {
+        text-align: center;
+
+        .input-group-text {
+            transition: .3s ease;
+            background: $primary-color-btn;
+            border-color: $primary-color-btn;
+            color: $white;
+
+            &:hover {
+                background: $primary-color;
+                border-color: $primary-color;
+            }
+        }
+    }
+
+    .category-div {
+        text-align: center;
+        background: #ffffff;
+        padding: 2rem;
+        box-shadow: 2px 2px 11px 0px #81818138;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+
+        p {
+            margin-bottom: 0.5rem;
+        }
+
+        figure {
+            img {
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 100%;
+                object-position: center;
+            }
+        }
+    }
+}
+
+.about-us {
+    .about-us-title {
+        h3 {
+            span {
+                position: relative;
+
+                &:after {
+                    content: '';
+                    width: 100px;
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    height: 2px;
+                    background: $primary-color;
+                }
+            }
+        }
+    }
+}
+
+.jobs {
+    padding: 65px 0px;
+    .job_link {
+        text-decoration: none;
+        color: unset;
+    }
+    .job-div {
+        background: $white;
+        margin-bottom: 1.5rem;
+        box-shadow: 2px 2px 11px 0px #81818138;
+
+        .job-desc {
+            padding: 1rem;
+
+
+
+            .buyer-name {
+                font-size: 14px;
+                border-bottom: 1px solid $border-color;
+                padding-bottom: .5rem;
+            }
+
+            .price {
+                color: $primary-color;
+            }
+
+            .ratings {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}
+
+.footer {
+    padding: 2rem 0rem 0 0;
+    background: $primary-color;
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 0rem;
+
+        .social-icon {
+            padding: 1rem;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            margin: 0rem .5rem;
+            color: $white;
+            text-decoration: none;
+
+            i {
+                width: 20px;
+                height: 20px;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    .subscribe {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        display: flex;
+
+        p {
+            b {
+                color: $white;
+            }
+        }
+
+        .btn-primary-outline {
+            border-color: $white;
+            color: $white;
+            width: 100%;
+
+            &:hover {
+                background: $primary-color-btn;
+            }
+        }
+    }
+
+    .copy-right {
+        display: flex;
+        justify-content: space-between;
+        color: $white;
+        padding: 2rem 0rem;
+
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    .footer-links a {
+        display: block;
+        color: $white;
+        text-decoration: none;
+    }
+
+    .footer-logo {
+        img {
+            width: 100px;
+        }
+    }
+
+    hr {
+        background: $white;
+        margin-top: 1rem;
+        margin-bottom: 0;
+    }
+}
+
+.login {
+    margin: 3rem 0rem;
+
+    .nav {
+        flex-wrap: nowrap;
+
+        .nav-link {
+            width: 100%;
+            transition: .3s ease;
+            color: $black;
+
+            &:hover {
+                background: $primary-color;
+                color: $white;
+            }
+
+            &.active {
+                color: $white;
+                background: $primary-color;
+            }
+        }
+    }
+}
+
+.singleJob {
+    padding: 3rem 0rem;
+
+    .job_details {
+        p {
+            a {
+                color: $primary-color;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .reviews {
+        display: flex;
+        .review_stars {
+            font-size: 0.8rem;
+            color: #FDCC0D;
+        }
+        .review_user_name{
+            margin-bottom: 0;
+            margin-right: 1rem;
+        }
+    }
+
+    .review_user_image {
+        margin-bottom: 0;
+        margin-right: 1rem;
+
+        img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+    }
+    .section_title{
+        padding: .5rem 1rem;
+        margin: 1rem 0;
+        h4{
+            color: $white;
+            margin-bottom: 0;
+        }
+    }
+
+}

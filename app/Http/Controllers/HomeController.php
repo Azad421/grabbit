@@ -61,4 +61,8 @@ class HomeController extends Controller
         $title = "Make Payment";
         return view('payment', compact('title', 'job'));
     }
+
+    public function order(Request $request){
+        return response($request);
+    }
 }

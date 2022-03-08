@@ -33,6 +33,7 @@ Route::get('/job', [HomeController::class, 'job'])->name('jobs');
 Route::get('/job/{id}', [HomeController::class, 'singleJob'])->name('job');
 Route::get('/job/category/{id}', [HomeController::class, 'job'])->name('job.category');
 Route::post('/job/payment', [HomeController::class, 'payment'])->name('payment');
+Route::post('/job/order', [HomeController::class, 'order'])->name('order');
 
 Route::get('/user', [UserController::class, 'dashboard'])->name('dashboard');
 Route::resource('/microjob', \App\Http\Controllers\User\MicroJobController::class);

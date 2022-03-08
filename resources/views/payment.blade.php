@@ -6,12 +6,12 @@
     <section class="singleJob second-bg">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-8 mx-auto border">
+                <div class="col-12 col-md-8 mx-auto border bg-white shadow p-5">
                     <h4 class="primary-text text-center my-5">Make Payment</h4>
                     <div class="row">
                         <div class="col-6">
                             <label class="d-flex align-items-center">
-                                <input type="checkbox" value="paypal" name="payWith" style="display: none" checked>
+                                <input type="radio" class="me-3 rounded" value="paypal" name="payWith" checked>
                                 <h5 class="mb-0">Pyapal</h5>
                             </label>
                         </div>
@@ -36,7 +36,6 @@
                 shape: 'pill',
                 label: 'buynow',
                 layout: 'vertical',
-
             },
             // Sets up the transaction when a payment button is clicked
             createOrder: function (data, actions) {
@@ -57,19 +56,15 @@
                     console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                     var transaction = orderData.purchase_units[0].payments.captures[0];
                     alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+                    var user = '{{ Auth('user')->user()->id  }}';
+                    var job_id = '{{ $job->job_id}}';
+                    var job_id = '{{ $job->job_id}}';
 
-                    // When ready to go live, remove the alert and show a success message within this page. For example:
-                    // var element = document.getElementById('paypal-button-container');
-                    // element.innerHTML = '';
-                    // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-                    // Or go to another URL:  actions.redirect('thank_you.html');
                 });
             },
             onCancel: function (data) {
                 console.log('canceled');
-                var user = '{{ $job->user_id}}';
-                var job_id = '{{ $job->job_id}}';
-                var job_id = '{{ $job->job_id}}';
+
             }
         }).render('#paypal-button-container');
 

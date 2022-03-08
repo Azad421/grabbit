@@ -14,8 +14,14 @@ class CreatePaymentsTable extends Migration
     public function up()
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('holder_name', 255);
+            $table->bigInteger('order_id');
+            $table->string('payment_id', 255);
+            $table->decimal('amount', 8, 2);
             $table->timestamps();
+
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
     }
 

@@ -27,7 +27,9 @@
     <!-- Render the radio buttons and marks -->
 @endsection
 @section('script')
-    <script src="https://www.paypal.com/sdk/js?client-id=test&components=buttons"></script>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AXEwqag-Uwnw3o8l-vqPASF-BGJcgw_NkRgkj2FBFWe20HpLG3Z-8Db8vKU3ohybgJsuuypEaDGF2700&components=buttons"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
 
         paypal.Buttons({
@@ -56,18 +58,36 @@
                     console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                     var transaction = orderData.purchase_units[0].payments.captures[0];
                     alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
-                    var user = '{{ Auth('user')->user()->id  }}';
-                    var job_id = '{{ $job->job_id}}';
-                    var job_id = '{{ $job->job_id}}';
+                    var job_id = '{{ $job->job_id }}';
+                    $.ajax({
+                        url: "/job/order",
+                        type: "post",
+                        data: {
+                            'job_id': job_id,
+                            '_token': 'zXVAqdSMLVQcyZJIDjRZAAspay4zB2JqneJnyyQr',
+                            'payment_id': transaction.id,
+                            'transaction_status': transaction.status
+                        },
+                        success: function (response) {
+                            console.log(response);
+                        }
+                    });
+
 
                 });
             },
             onCancel: function (data) {
-                console.log('canceled');
-
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Your Payment Is no completed',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
             }
         }).render('#paypal-button-container');
 
 
+
     </script>
 @endsection
+

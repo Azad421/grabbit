@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png') }}" sizes="16x16" href="{{ asset('assets/assets/admin/images/favicon.png') }}">
+    <link rel="icon" type="image/png') }}" sizes="16x16" href="{{ asset('images/LogoGrabIT.png') }}">
     <title>@yield('title')</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('assets/admin/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -134,7 +134,6 @@
 <script src="{{ asset('assets/admin/plugins/dropify/dist/js/dropify.min.js') }}"></script>
 @php
     $currentRoute = \Illuminate\Support\Facades\Route::getCurrentRoute()->getName();
-echo $currentRoute;
 @endphp
 @if($currentRoute == 'dashboard')
     <script src="{{ asset('assets/admin/js/dashboard3.js') }}"></script>
@@ -147,6 +146,7 @@ echo $currentRoute;
     $('#myTable').DataTable();
 
 </script>
+@yield('script')
 </body>
 
 </html>

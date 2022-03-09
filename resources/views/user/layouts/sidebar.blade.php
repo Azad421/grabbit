@@ -11,15 +11,18 @@
             </div>
             <!-- User profile text-->
             <div class="profile-text"><a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown"
-                                         role="button" aria-haspopup="true" aria-expanded="true">{{ Auth::user()->first_name . " " . Auth::user()->last_name }}</a>
+                                         role="button" aria-haspopup="true"
+                                         aria-expanded="true">{{ Auth::user()->first_name . " " . Auth::user()->last_name }}</a>
                 <div class="dropdown-menu animated flipInY">
                     <a href="{{ route('profile') }}" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
                     <a href="#" class="dropdown-item"><i class="ti-email"></i> Inbox</a>
                     <div class="dropdown-divider"></div>
-                    <a href="{{ route('password.request') }}" class="dropdown-item"><i class="ti-settings"></i> Reset Password</a>
+                    <a href="{{ route('password.request') }}" class="dropdown-item"><i class="ti-settings"></i> Reset
+                        Password</a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}"
-                       onclick="event.preventDefault(); document.getElementById('logoutForm').submit();" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                       onclick="event.preventDefault(); document.getElementById('logoutForm').submit();"
+                       class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
 
                 </div>
             </div>
@@ -29,11 +32,13 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li class="nav-small-cap">PERSONAL</li>
-                <li><a class="waves-effect waves-dark" href="{{ route('home') }}" aria-expanded="false"><i
+                <li><a class="waves-effect waves-dark" href="{{ route('dashboard') }}" aria-expanded="false"><i
                             class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a></li>
-                <li><a class="waves-effect waves-dark" href="{{ route('microjob.index') }}" aria-expanded="false"><i
-                            class="mdi mdi-gift"></i><span class="hide-menu">Micro Jobs</span></a>
-                </li>
+                @if(\Illuminate\Support\Facades\Auth::user()->role->nickname == 'jobseeker')
+                    <li><a class="waves-effect waves-dark" href="{{ route('microjob.index') }}" aria-expanded="false"><i
+                                class="mdi mdi-gift"></i><span class="hide-menu">Micro Jobs</span></a>
+                    </li>
+                @endif
 
             </ul>
         </nav>

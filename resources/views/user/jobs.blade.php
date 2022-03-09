@@ -20,7 +20,7 @@
                                     class="mdi mdi-library-plus"></i> Add Job</a>
                         </div>
                         <div class="col-8 text-center">
-                            @include('employee.layouts.error')
+                            @include('user.layouts.error')
                         </div>
                     </div>
                     <div class="table-responsive">

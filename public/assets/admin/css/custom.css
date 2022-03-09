@@ -39,3 +39,20 @@ small{
 .actionDrop{
     position: relative;
 }
+.chat-rbox{
+    height: 53vh;
+    overflow: auto;
+}
+.chat-list li .chat-content {
+    width: calc(100% - 175px);
+}
+.chat-list li .chat-time {
+    width: 115px;
+}
+.chat-main-box .chat-right-aside .chat-list {
+    padding-top: 0;
+    height: unset;
+}
+.chat-main-box .chat-left-aside {
+    height: 71vh;
+}

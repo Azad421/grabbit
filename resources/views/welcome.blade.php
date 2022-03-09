@@ -96,9 +96,9 @@
                     <div class="col-md-4 col-lg-3 col-6">
                         <div class="category-div">
                             <figure>
-                                <img src="{{ asset('./images/service-1.jpg') }}" alt="Category" class="img-fluid">
+                                <img src="{{ asset('images/'.$category->image) }}" alt="Category" class="img-fluid">
                             </figure>
-                            <p>{{ $category->category_name }}</p>
+                            <p><a class="primary-text text-decoration-none" href="{{ route('job.category', $category->category_id) }}">{{ $category->category_name }}</a></p>
                             <p>Total services 0</p>
                         </div>
                     </div>

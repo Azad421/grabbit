@@ -19,7 +19,7 @@
                             <a href="{{ route('job.category', $job->getCategory->category_id) }}">{{ $job->getCategory->category_name }}</a>
                         </p>
                         <hr>
-                        <h6>By {{ $job->user->first_name }} {{ $job->user->last_name }}</h6>
+                        <h6>By <a class="text-decoration-none text-dark" href="{{ route('user.profile', $job->user->id) }}">{{ $job->user->first_name }} {{ $job->user->last_name }}</a></h6>
                         <p>
                             <sapn>
                                 <i class="fas fa-star"></i>

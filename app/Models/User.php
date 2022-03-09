@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name',
         'last_name',
+        'image',
         'gender',
         'country',
         'district',
@@ -33,7 +34,8 @@ class User extends Authenticatable
         'nid_num',
         'qualification',
         'acc_status',
-        'verification_code'
+        'verification_code',
+        'is_verified'
     ];
 
     /**

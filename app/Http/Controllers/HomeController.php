@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\MicroJob;
+use App\Models\Order;
+use App\Models\Payment;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,14 +36,14 @@ class HomeController extends Controller
         return view('welcome', compact('title', 'categories', 'jobs'));
     }
 
-
     public function job($category = null){
         $jobs = MicroJob::all();
         if($category != null){
-        $jobs = MicroJob::all()->where('category', 'LIKE' ,$category);
+            $jobs = MicroJob::all()->where('category', 'LIKE' ,$category);
+            $category = Category::where('category_id', $category)->first();
         }
         $title = config('app.name') ."- All Job";
-        return view('allJobs', compact('title', 'jobs'));
+        return view('allJobs', compact('title', 'jobs', 'category'));
     }
 
     public function singleJob($id){
@@ -52,17 +55,16 @@ class HomeController extends Controller
         return view('jobDetails', compact('title', 'job'));
     }
 
-    public function payment(Request $request){
 
-        $job = MicroJob::find($request->job_id);
-        if($job == null){
+    public function profile($id){
+
+        $user = User::find($id);
+        if($user == null){
             return redirect()->back();
         }
-        $title = "Make Payment";
-        return view('payment', compact('title', 'job'));
+        $title = $user->first_name . '' . $user->last_name;
+        return view('userProfile', compact('title', 'user'));
     }
 
-    public function order(Request $request){
-        return response($request);
-    }
+
 }

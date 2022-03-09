@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->enum('payment',['notPaid', 'paid'])->nullable();
             $table->integer('quantity');
             $table->integer('duration');
-            $table->string('order_note', 255);
+            $table->string('order_note', 255)->nullable();
             $table->integer('status')->unsigned();
             $table->timestamps();
 

@@ -29,7 +29,9 @@ class UserController extends Controller
                 'route' => 'dashboard')
         ];
         $title = "Dashboard";
-        return view('user.dashboard', compact('title', 'breadCrumb', 'pageTitle'));
+        $jobs = MicroJob::all();
+        $users = User::all();
+        return view('user.dashboard', compact('title', 'breadCrumb', 'pageTitle', 'jobs', 'users'));
     }
 
     public function profile()
@@ -103,14 +105,4 @@ class UserController extends Controller
     }
 
 
-    public function orderDetails($order){
-        $order = Order::where('id', $order)->get()->first();
-        $pageTitle = "Order Details";
-        $breadCrumb = [
-            array('title' => 'Dashboard',
-                'route' => 'dashboard'),
-        ];
-        $title = $order->job->job_title;
-        return view('user.single-order', compact('order', 'title', 'pageTitle', 'breadCrumb'));
-    }
 }

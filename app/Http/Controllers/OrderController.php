@@ -12,7 +12,19 @@ class OrderController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:user', 'rule.employee']);
+        $this->middleware(['auth:user']);
+    }
+
+    public function order(){
+        $orders = Order::all();
+        $pageTitle = "All Orders";
+        $breadCrumb = [
+            array('title' => 'Dashboard',
+                'route' => 'dashboard'),
+        ];
+        $title = "All Orders";
+
+        return view('user.orders', compact('orders', 'title', 'pageTitle', 'breadCrumb'));
     }
 
     public function payment(Request $request){
@@ -42,13 +54,14 @@ class OrderController extends Controller
     }
 
 
-    public function order(Request $request){
+    public function create(Request $request){
 
         $job = MicroJob::find($request->job_id);
         $order = New Order();
 
         $order->job_id = $job->job_id;
-        $order->user_id = Auth::user()->id;
+        $order->from_user = Auth::user()->id;
+        $order->to_user = $job->user->id;
         $order->amount = $job->budget;
         $order->quantity = 1;
         $order->status  = 2;
@@ -69,4 +82,23 @@ class OrderController extends Controller
         return response($request);
     }
 
+    public function orderDetails($order){
+        $order = Order::where('id', $order)->get()->first();
+        if($order == null){
+            return redirect()->back();
+        }
+        $pageTitle = "Order Details";
+        $breadCrumb = [
+            array('title' => 'Dashboard',
+                'route' => 'dashboard'),
+        ];
+        $title = $order->job->job_title;
+        return view('user.single-order', compact('order', 'title', 'pageTitle', 'breadCrumb'));
+    }
+
+    public function destroy($order){
+        Order::destroy('id', $order);
+//        Payment::where('order_id', $order)->destroy();
+        return redirect()->back()->with('alert-warning', 'Order Deleted');
+    }
 }

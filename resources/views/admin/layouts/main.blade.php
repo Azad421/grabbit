@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset("assets/admin/plugins/dropify/dist/css/dropify.min.css") }}">
     <!-- Vector CSS -->
     <link href="{{ asset('assets/admin/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets/admin/plugins/fontawesome/all.css') }}" rel="stylesheet"/>
     <!-- Custom CSS -->
     <link href="{{ asset('assets/admin/css/style.css') }}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
@@ -36,6 +37,7 @@
         <![endif]-->
     <!-- Jquery -->
     <script src="{{ asset('assets/admin/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/fontawesome/all.min.js') }}"></script>
 
 </head>
 

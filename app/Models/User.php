@@ -60,4 +60,8 @@ class User extends Authenticatable
     public function role(){
         return $this->hasOne(UserRole::class, 'id', 'user_role');
     }
+
+    public function job(){
+        return $this->hasMany(MicroJob::class, 'id', 'user_id');
+    }
 }

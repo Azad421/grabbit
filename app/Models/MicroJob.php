@@ -22,4 +22,8 @@ class MicroJob extends Model
     public function user(){
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function order(){
+        return $this->hasMany(Order::class, 'job_id', 'job');
+    }
 }

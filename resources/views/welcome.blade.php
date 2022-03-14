@@ -186,7 +186,7 @@
                         </div>
                     </div>
                 @endforeach
-                @if($job->count() > 0)
+                @if($jobs->count() > 0)
                     <div class="col-12 text-end">
                         <a href="{{ route('jobs') }}" class="btn primary-btn">See All Job</a>
                     </div>

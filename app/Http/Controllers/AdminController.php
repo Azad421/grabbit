@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
+use App\Models\MicroJob;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -25,7 +27,9 @@ class AdminController extends Controller
                 'route' => 'admin.dashboard')
         ];
         $title = "Admin Dashboard";
-        return view('admin.dashboard', compact('title', 'pageTitle', 'breadCrumb'));
+        $jobs = MicroJob::all();
+        $user = User::all();
+        return view('admin.dashboard', compact('title', 'pageTitle', 'breadCrumb', 'jobs', 'user'));
     }
 
     /**

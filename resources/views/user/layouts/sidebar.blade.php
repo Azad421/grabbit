@@ -34,6 +34,8 @@
                 <li class="nav-small-cap">PERSONAL</li>
                 <li><a class="waves-effect waves-dark" href="{{ route('dashboard') }}" aria-expanded="false"><i
                             class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a></li>
+                <li><a class="waves-effect waves-dark" href="{{ route('order.index') }}" aria-expanded="false"><i
+                            class="mdi mdi-gift"></i><span class="hide-menu">My Orders </span></a></li>
                 @if(\Illuminate\Support\Facades\Auth::user()->role->nickname == 'jobseeker')
                     <li><a class="waves-effect waves-dark" href="{{ route('microjob.index') }}" aria-expanded="false"><i
                                 class="mdi mdi-gift"></i><span class="hide-menu">Micro Jobs</span></a>

@@ -17,6 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+    public static $redirectToDashboard;
     public const HOME = '/home';
     public const USER = '/user';
     public const EMPLOYEE = '/employee';

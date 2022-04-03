@@ -45,14 +45,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href=""
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                            src="{{ asset('assets/admin/images/users/1.jpg') }}" alt="user"
+                            src="{{ asset('images/'.Auth::user()->image) }}" alt="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}"
                             class="profile-pic"/></a>
                     <div class="dropdown-menu dropdown-menu-right scale-up">
                         <ul class="dropdown-user">
                             <li>
                                 <div class="dw-user-box">
-                                    <div class="u-img"><img src="{{ asset('assets/admin/images/users/1.jpg') }}"
-                                                            alt="user"></div>
+                                    <div class="u-img"><img src="{{ asset('images/'.Auth::user()->image) }}"
+                                                            alt="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}"></div>
                                     <div class="u-text">
                                         <h4>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h4>
                                         <p class="text-muted">{{ Auth::user()->email }}</p>
@@ -61,7 +61,7 @@
                             </li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('profile') }}"><i class="ti-user"></i> My Profile</a></li>
-                            <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+                            <li><a href="{{ route('inbox') }}"><i class="ti-email"></i> Inbox</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('password.request') }}"><i class="ti-settings"></i> Reset Password</a></li>
                             <li role="separator" class="divider"></li>

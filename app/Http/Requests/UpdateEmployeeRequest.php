@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateEmployeeRequest extends FormRequest
 {
@@ -30,7 +31,7 @@ class UpdateEmployeeRequest extends FormRequest
             'contact_no' => 'nullable|numeric',
             'nid_num' => 'nullable|numeric',
             'qualification' => 'nullable',
-            'email' => 'email|unique:users,email,'.$this->id,
+            'email' => 'email|unique:users,email,'.Auth::user()->id,
         ];
     }
 }

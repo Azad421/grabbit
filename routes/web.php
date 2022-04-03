@@ -38,19 +38,22 @@ Route::get('/job/{id}', [HomeController::class, 'singleJob'])->name('job');
 Route::get('/job/category/{id}', [HomeController::class, 'job'])->name('job.category');
 Route::post('/job/payment', [OrderController::class, 'payment'])->name('payment');
 Route::post('/job/order', [OrderController::class, 'create'])->name('order');
-Route::get('/order', [OrderController::class, 'order'])->name('order.index');
+Route::get('/order', [UserController::class, 'order'])->name('order.index');
 Route::delete('/order/{id}', [OrderController::class, 'destroy'])->name('order.destroy');
-Route::get('/order/{id}', [OrderController::class, 'orderDetails'])->name('order.show');
+Route::get('/order/{id}', [UserController::class, 'orderDetails'])->name('order.show');
+Route::get('/delivery/{id}', [UserController::class, 'deliver'])->name('delivery.index');
+Route::get('/completed/{id}', [UserController::class, 'orderCompleted'])->name('delivery.completed');
 
 Route::get('/user/profile/{id}', [HomeController::class, 'profile'])->name('user.profile');
 Route::get('/inbox/{id?}', [UserController::class, 'inbox'])->name('inbox');
 Route::post('/inbox/send', [MessageController::class, 'send'])->name('send');
 Route::post('/inbox/face', [MessageController::class, 'faceMessage'])->name('face');
-Route::get('/inbox/create/{id}', [UserController::class, 'insertChat'])->name('inbox.create');
+Route::get('/inbox/create/{order}', [UserController::class, 'insertChat'])->name('inbox.create');
 
 Route::get('/user', [UserController::class, 'dashboard'])->name('dashboard');
+Route::get('/user/deactivate', [UserController::class, 'deactivate'])->name('acc.deactivate');
 Route::resource('/microjob', \App\Http\Controllers\User\MicroJobController::class);
-Route::post('/profile/{id}', [UserController::class, 'profileUpdate'])->name('profile.update');
+Route::post('/profile/update', [UserController::class, 'profileUpdate'])->name('profile.update');
 
 Route::post('register/jobseeker', [JobSeekersRegisterController::class, 'register'])->name('jobseeker.register');
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
@@ -66,6 +69,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/category/status/{id}', [CategoryController::class, 'updateStatus'])->name('category.status');
     Route::post('job/{id}/reject', [MicroJobController::class, 'reject'])->name('job.reject');
     Route::post('job/{id}/approve', [MicroJobController::class, 'approve'])->name('job.approve');
+    Route::get('setting', [AdminController::class, 'setting'])->name('setting');
+    Route::put('email', [AdminController::class, 'changeEmail'])->name('changeEmail');
+    Route::put('password', [AdminController::class, 'changePassword'])->name('changePassword');
+    Route::get('email/verify/{token}/{email}', [AdminController::class, 'emailVerify'])->name('email.verify');
+    Route::get('users', [AdminController::class, 'users'])->name('users');
+    Route::get('user/approve/{user}', [AdminController::class, 'userApprove'])->name('user.approve');
+    Route::get('user/reject/{user}', [AdminController::class, 'userReject'])->name('user.reject');
 });
 //Route::prefix('employee')->name('employee.')->group( function () {
 //    Route::get('/', [EmployeeController::class,'index'])->name('dashboard');

@@ -131,8 +131,6 @@
 <!-- Vector map JavaScript -->
 <script src="{{ asset('assets/admin/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
 <script src="{{ asset('assets/admin/plugins/vectormap/jquery-jvectormap-us-aea-en.js') }}"></script>
-<!-- Dropify JS -->
-<script src="{{ asset('assets/admin/plugins/dropify/dist/js/dropify.min.js') }}"></script>
 @php
     $currentRoute = \Illuminate\Support\Facades\Route::getCurrentRoute()->getName();
 @endphp

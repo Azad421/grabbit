@@ -62,7 +62,7 @@ class HomeController extends Controller
         if($user == null){
             return redirect()->back();
         }
-        $title = $user->first_name . '' . $user->last_name;
+        $title = $user->first_name . ' ' . $user->last_name;
         return view('userProfile', compact('title', 'user'));
     }
 

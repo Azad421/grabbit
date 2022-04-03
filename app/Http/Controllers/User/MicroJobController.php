@@ -78,7 +78,7 @@ class MicroJobController extends Controller
         $microjob = new MicroJob();
 
 
-        $microjob->employer_id = Auth('user')->user()->id;
+        $microjob->user_id = Auth('user')->user()->id;
         $microjob->job_title = $title;
         $microjob->slug = $slug;
         $microjob->category = $request->category;
@@ -91,7 +91,7 @@ class MicroJobController extends Controller
 
         $microjob->save();
 
-        return redirect()->route('user.microjob.index');
+        return redirect()->route('microjob.index');
     }
 
     /**
@@ -115,8 +115,13 @@ class MicroJobController extends Controller
     {
         $microJob = MicroJob::find($microJob);
         $title = 'Employee - Edit Job';
+        $pageTitle = 'Edit Job';
+        $breadCrumb = [
+            array('title' => 'Home',
+                'route' => 'admin.dashboard')
+        ];
         $categories = Category::all();
-        return view('user.editJob', compact('title', 'categories', 'microJob'));
+        return view('user.editJob', compact('title', 'categories', 'microJob', 'pageTitle', 'breadCrumb'));
     }
 
     /**
@@ -144,7 +149,7 @@ class MicroJobController extends Controller
         }
 
 
-        $microjob->employer_id = Auth('user')->user()->id;
+        $microjob->user_id = Auth('user')->user()->id;
         $microjob->job_title = $title;
         $microjob->category = $request->category;
         $microjob->image = $image;

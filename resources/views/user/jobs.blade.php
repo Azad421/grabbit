@@ -55,7 +55,7 @@
                                     <td>{{ $job->job_duration }}</td>
                                     <td>{{ $job->budget }}</td>
                                     <td class="d-flex justify-content-center">
-                                        <a href="{{ route('microjob.show',$job->job_id) }}"
+                                        <a href="{{ route('job',$job->job_id) }}"
                                            class="btn text-white btn-primary mr-3"><i class="mdi mdi-eye"></i></a>
                                         <a href="{{ route('microjob.edit',$job->job_id) }}"
                                            class="btn text-white btn-primary mr-3"><i class="mdi mdi-pen"></i></a>

@@ -29,7 +29,8 @@
                 </div>
                 <div class="card-body">
 
-                    <form action="{{ route('microjob.update', $microJob->job_id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('microjob.update', $microJob->job_id) }}" method="post"
+                          enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-body col-12 col-sm-10 col-md-8 col-lg-6 mx-auto">
@@ -40,7 +41,8 @@
                                         <label class="control-label" for="job_title">Title</label>
                                         <input type="text" id="job_title" name="job_title"
                                                class="form-control @error('job_title') form-control-danger @enderror"
-                                               placeholder="Title..." value="{{ old('job_title',$microJob->job_title) }}">
+                                               placeholder="Title..."
+                                               value="{{ old('job_title',$microJob->job_title) }}">
                                         @error('job_title')
                                         <small class="form-control-feedback"> {{ $message }} </small>
                                         @enderror
@@ -56,7 +58,8 @@
                                             <option value="">Select Category</option>
                                             @foreach($categories as $category)
                                                 <option
-                                                    value="{{ $category->category_id }}" @if($category->category_id == old('category', $microJob->category)) selected @endif>{{ $category->category_name }}</option>
+                                                    value="{{ $category->category_id }}"
+                                                    @if($category->category_id == old('category', $microJob->category)) selected @endif>{{ $category->category_name }}</option>
                                             @endforeach
                                         </select>
                                         @error('category')
@@ -73,7 +76,8 @@
                                         <label class="control-label" for="job_duration">Job Duration</label>
                                         <input type="text"
                                                class="form-control @error('job_duration') form-control-danger @enderror"
-                                               name="job_duration" placeholder="Day(s)" value="{{ old('job_duration', $microJob->job_duration) }}">
+                                               name="job_duration" placeholder="Day(s)"
+                                               value="{{ old('job_duration', $microJob->job_duration) }}">
                                         @error('job_duration')
                                         <small class="form-control-feedback"> {{ $message }} </small>
                                         @enderror
@@ -99,7 +103,10 @@
                                 <div class="col-12">
                                     <div class="form-group @error('image') has-danger @enderror">
                                         <label class="control-label" for="description">Job Description</label>
-                                        <input type="file" name="image" class="dropify @error('image') form-control-danger @enderror" data-default-file="{{ asset('images/'.$microJob->image) }}" id="job_image">
+                                        <input type="file" name="image"
+                                               class="dropify @error('image') form-control-danger @enderror"
+                                               data-default-file="{{ asset('images/'.$microJob->image) }}"
+                                               id="job_image">
                                         <input type="hidden" name="oldImage" value="{{ $microJob->image }}">
                                         @error('image')
                                         <small class="form-control-feedback"> {{ $message }} </small>
@@ -138,6 +145,7 @@
     <!-- Row -->
 
     <!-- End PAge Content -->
+    <script src="{{ asset('assets/admin/plugins/dropify/dist/js/dropify.min.js') }}"></script>
     <script>
         $(document).ready(function () {
             // Basic

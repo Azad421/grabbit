@@ -153,7 +153,7 @@
                 </div>
             </div>
             <div class="row">
-                @foreach($jobs as $job)
+                @foreach($jobs->where('status_id', \App\Models\JobStatus::where( 'nickname', 'approved')->first()->status_id) as $job)
                     <div class="col-md-4 col-lg-3 col-6">
 
                         <div class="job-div">
@@ -169,17 +169,13 @@
                                 <p class="buyer-name text-muted">{{ $job->getCategory->category_name }}</p>
                                 <p class="d-flex justify-content-between">
                                     <span><i class="fa-solid fa-eye me-2"></i>0</span>
-                                    <span class="primary-text"><b>$290</b></span>
+                                    <span class="primary-text"><b>{{ price($job->budget) }}</b></span>
                                 </p>
                                 <p class="d-flex justify-content-between">
                                     <span><i class="fa-solid fa-star"></i></span>
                                     <span class="primary-text ratings">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    (5)
+                                    {{ showStars($job->review->sum('rating')/5) }}
+                                    ({{ round($job->review->sum('rating'))/5 ?? 0 }}/5)
                                 </span>
                                 </p>
                             </div>

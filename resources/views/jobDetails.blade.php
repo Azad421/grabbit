@@ -5,6 +5,7 @@
     {{--    Start Jobs Details --}}
     <section class="singleJob second-bg">
         <div class="container">
+            @include('layouts.error')
             <div class="row">
                 <div class="col-6">
                     <figure class="job_figure">
@@ -19,18 +20,19 @@
                             <a href="{{ route('job.category', $job->getCategory->category_id) }}">{{ $job->getCategory->category_name }}</a>
                         </p>
                         <hr>
-                        <h6>By <a class="text-decoration-none text-dark" href="{{ route('user.profile', $job->user->id) }}">{{ $job->user->first_name }} {{ $job->user->last_name }}</a></h6>
+                        <h6>By <a class="text-decoration-none text-dark"
+                                  href="{{ route('user.profile', $job->user->id) }}">{{ $job->user->first_name }} {{ $job->user->last_name }}</a>
+                        </h6>
                         <p>
-                            <sapn>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                            <sapn class="text-warning">
+                                {{ showStars($job->review->where('from_user', '!=', $job->user_id)->avg('rating')) }}
                             </sapn>
-                            <span>(99)</span>
+                            <span>({{ $job->review->where('from_user', '!=', $job->user_id)->avg('rating') ?? 0 }}/5)</span>
                             ||
-                            <span>2 Order In Queue</span>
+                            <span>{{ $job->order->where('status', '!=', 4)->count() }} Order In Queue</span>
+                        </p>
+                        <p>
+                            Price : {{ price($job->budget) }}
                         </p>
                         <hr>
                         <div class="desc">
@@ -47,23 +49,26 @@
                 </div>
             </div>
             <div class="section_title primary-bg">
-                <h4>Reviews (4)</h4>
+                <h4>Reviews ({{$job->review->where('from_user', '!=', $job->user_id)->count()}})</h4>
             </div>
-            <div class="reviews">
-                <div class="">
-                    <figure class="mb-0 review_user_image">
-                        <img src="{{ asset('assets/admin/images/users/1.jpg') }}" alt="User name">
-                    </figure>
-                </div>
-                <div class="pt-2">
-                    <h5 class="review_user_name">User name </h5>
-                    <div class="review_text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab deleniti eius esse fugit harum,
-                        illum ipsam ipsum nulla officiis possimus repellendus sapiente similique veniam vero.
+            @foreach($job->review->where('from_user', '!=', $job->user_id) as $review)
+                <div class="reviews">
+                    <div class="">
+                        <figure class="mb-0 review_user_image">
+                            <img src="{{ asset('images/'. $review->fromUser->image) }}" alt="User name">
+                        </figure>
                     </div>
-                    <span class="review_stars"><i class="fas fa-star"></i></span>
+                    <div class="pt-2">
+                        <h5 class="review_user_name">{{ $review->fromUser->first_name }} {{ $review->fromUser->last_name }}</h5>
+                        <div class="review_text">
+                            {{ $review->comments }}
+                        </div>
+                        <span class="review_stars">
+                        {{ showStars($review->rating) }}
+                    </span>
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </section>
     {{--    End Jobs Details --}}

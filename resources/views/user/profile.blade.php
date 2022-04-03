@@ -11,8 +11,8 @@
         <div class="col-lg-4 col-xlg-3 col-md-5">
             <div class="card">
                 <div class="card-body">
-                    <center class="m-t-30"><img src="{{ asset('assets/admin/images/users/5.jpg') }} " class="img-circle"
-                                                width="150"/>
+                    <center class="m-t-30"><img src="{{ asset('images/'.$user->image) }} " class="img-circle"
+                                                width="150" height="150" style="object-fit: cover"/>
                         <h4 class="card-title m-t-10">{{ $user->first_name . ' ' . $user->last_name }}</h4>
                         <h6 class="card-subtitle">{{ $user->about_me }}</h6>
                     </center>
@@ -36,7 +36,9 @@
                     <small class="text-muted p-t-30 db">Address</small>
                     <h6>{{ $user->village }} @if($user->district) , $user->district @endif @if($user->country) ,
                         $user->country @endif</h6>
-
+                    <div class="text-center">
+                        <a href="{{ route('acc.deactivate') }}">Deactivate Account</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -56,8 +58,24 @@
                     <div class="tab-pane active" id="settings" role="tabpanel">
                         <div class="card-body">
                             @include('admin.layouts.error')
-                            <form class="form-horizontal form-material" method="post" action="{{ route('profile.update', Auth::user()->id) }}">
+                            <form class="form-horizontal form-material" method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data">
                                 @csrf
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group @error('first_name') has-danger @enderror">
+                                            <label class="col-12">Profile Image</label>
+                                            <div class="col-12">
+                                                <input type="file" name="image"
+                                                       class="dropify"
+                                                       data-default-file="{{ asset('images/'.$user->image) }}">
+                                                <input type="hidden" value="{{ $user->image }}" name="oldImage">
+                                                @error('image')
+                                                <small class="form-control-feedback"> {{ $message }} </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group @error('first_name') has-danger @enderror">
@@ -107,7 +125,7 @@
                                             <div class="col-md-12">
                                                 <input type="email" placeholder="Type Email..."
                                                        class="form-control form-control-line"
-                                                       value="{{ old('email', $user->email) }}" name="email">
+                                                       value="{{ old('email', $user->email) }}" name="email" disabled>
                                                 @error('email')
                                                 <small class="form-control-feedback"> {{ $message }} </small>
                                                 @enderror
@@ -135,7 +153,7 @@
                                             <div class="col-md-12">
                                                 <input type="text" placeholder="Type NID Number..."
                                                        value="{{ old('nid_num', $user->nid_num) }}"
-                                                       class="form-control form-control-line">
+                                                       class="form-control form-control-line" name="nid_num">
                                                 @error('nid_num')
                                                 <small class="form-control-feedback"> {{ $message }} </small>
                                                 @enderror
@@ -277,5 +295,16 @@
         //     window.location.hash = tabid;
         //     return true;
         // });
+    </script>
+@endsection
+@section('script')
+    <!-- Dropify JS -->
+    <script src="{{ asset('assets/admin/plugins/dropify/dist/js/dropify.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            // Basic
+            $('.dropify').dropify();
+
+        });
     </script>
 @endsection

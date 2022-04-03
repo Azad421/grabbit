@@ -51,7 +51,7 @@
                         <ul class="dropdown-user">
                             <li>
                                 <div class="dw-user-box">
-                                    <div class="u-img"><img src="{{ asset('assets/admin/images/users/1.jpg') }}"
+                                    <div class="u-img"><img src="{{ asset('images/profile.png') }}"
                                                             alt="user"></div>
                                     <div class="u-text">
                                         <h4>{{ Auth::user()->user_name }}</h4>
@@ -60,9 +60,7 @@
                                 </div>
                             </li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-settings"></i> Change Password</a></li>
+                            <li><a href="{{ route('admin.setting') }}"><i class="ti-settings"></i> Setting</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href=""
                                    onclick="event.preventDefault(); document.getElementById('logoutForm').submit();"><i

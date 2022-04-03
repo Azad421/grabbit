@@ -120,6 +120,11 @@
     <!-- Row -->
 
     <!-- End PAge Content -->
+
+@endsection
+@section('script')
+    <!-- Dropify JS -->
+    <script src="{{ asset('assets/admin/plugins/dropify/dist/js/dropify.min.js') }}"></script>
     <script>
         $(document).ready(function () {
             // Basic

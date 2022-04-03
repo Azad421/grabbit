@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('first_name', 255);
             $table->string('last_name', 255);
-            $table->string('image', 255);
+            $table->string('image', 255)->nullable();
             $table->string('gender', 255)->nullable();
             $table->string('country', 255)->nullable();
             $table->string('district', 255)->nullable();
@@ -48,8 +48,8 @@ class CreateUsersTable extends Migration
                 ->on('user_roles')
                 ->onDelete('cascade');
         });
-        User::create(['first_name' => 'Employee', 'last_name' => 'Dev', 'image' => 'profile.png', 'gender' => 'Male','user_role' => 2,'email' => 'azadkh92558@gmail.com','is_verified'=> 1, 'password' => Hash::make('password'), 'acc_status' => 2]);
-        User::create(['first_name' => 'Job', 'last_name' => 'Seeker', 'image' => 'profile.png', 'gender' => 'Male','user_role' => 1,'email' => 'azadulislam202020@gmail.com','is_verified'=> 1, 'password' => Hash::make('password'), 'acc_status'=> 2]);
+        User::create(['first_name' => 'Employee', 'last_name' => 'Dev', 'image' => 'profile.png', 'gender' => 'Male','user_role' => 2,'email' => 'demoemployee@gmail.com','is_verified'=> 1, 'password' => Hash::make('password'), 'acc_status' => 2]);
+        User::create(['first_name' => 'Job', 'last_name' => 'Seeker', 'image' => 'profile.png', 'gender' => 'Male','user_role' => 1,'email' => 'demojobseeker@gmail.com','is_verified'=> 1, 'password' => Hash::make('password'), 'acc_status'=> 2]);
         User::create(['first_name' => 'Demo', 'last_name' => 'Seeker', 'image' => 'profile.png', 'gender' => 'Male','user_role' => 1,'email' => 'demo@gmail.com','is_verified'=> 1, 'password' => Hash::make('password'), 'acc_status'=> 2]);
     }
 

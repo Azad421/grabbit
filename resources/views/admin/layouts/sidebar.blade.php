@@ -7,20 +7,22 @@
         <div class="user-profile"
              style="background: url({{ asset('assets/admin/images/background/user-info.jpg')}}">
             <!-- User profile image -->
-            <div class="profile-img"><img src="{{ asset('assets/admin/images/users/profile.png') }}" alt="user"/>
+            <div class="profile-img"><img src="{{ asset('images/profile.png') }}" alt="user"/>
             </div>
             <!-- User profile text-->
             <div class="profile-text">
                 <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown"
                                          role="button" aria-haspopup="true" aria-expanded="true">{{ Auth::user()->user_name }}</a>
-                <div class="dropdown-menu animated flipInY"><a href="#" class="dropdown-item"><i
-                            class="ti-user"></i> My Profile</a> <a href="#" class="dropdown-item"><i
-                            class="ti-wallet"></i> My Balance</a> <a href="#" class="dropdown-item"><i
-                            class="ti-email"></i> Inbox</a>
+                <div class="dropdown-menu animated flipInY">
+                    <a href="{{ route('admin.setting') }}" class="dropdown-item"><i
+                            class="ti-settings"></i> Setting</a>
+
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="login.html" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                    <a href="login.html" class="dropdown-item"
+                       onclick="event.preventDefault(); document.getElementById('logoutForm').submit();"><i class="fa fa-power-off"></i> Logout</a>
+                    <form method="POST" id="logoutForm" action="{{ route('admin.logout') }}">
+                        @csrf
+                    </form>
                 </div>
             </div>
         </div>
@@ -38,6 +40,8 @@
                         <li><a href="{{ route('admin.microjob.index') }}">Jobs</a></li>
                     </ul>
                 </li>
+                <li><a class="waves-effect waves-dark" href="{{ route('admin.users') }}" aria-expanded="false"><i
+                            class="mdi mdi-account"></i><span class="hide-menu">User </span></a></li>
 
             </ul>
         </nav>

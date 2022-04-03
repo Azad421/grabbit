@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\JobStatus;
 use App\Models\MicroJob;
 use App\Http\Requests\StoreMicroJobRequest;
 use App\Http\Requests\UpdateMicroJobRequest;
@@ -35,14 +36,14 @@ class MicroJobController extends Controller
     }
 
     public function reject($id){
-        $job = MicroJob::where('job_id',$id)->first();
-        $job->status_id = 2;
+        $job = MicroJob::find($id);
+        $job->status_id = JobStatus::where( 'nickname', 'rejected')->first()->status_id;
         $job->save();
         return redirect()->back()->with('alert-warning', "Job Rejected Successfully");
     }
     public function approve($id){
-        $job = MicroJob::where('job_id', $id)->first();
-        $job->status_id = 3;
+        $job = MicroJob::find($id);
+        $job->status_id = JobStatus::where( 'nickname', 'approved')->first()->status_id;
         $job->save();
         return redirect()->back()->with('alert-success', "Job Approved Successfully");
     }
@@ -97,11 +98,18 @@ class MicroJobController extends Controller
      * Display the specified resource.
      *
      * @param \App\Models\MicroJob $microJob
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function show(MicroJob $microJob)
+    public function show($microJob)
     {
-        //
+        $pageTitle = "All Job";
+        $breadCrumb = [
+            array('title' => 'Dashboard',
+                'route' => 'admin.dashboard')
+        ];
+        $title = 'Admin - All JOb';
+        $microJob = MicroJob::find($microJob);
+        return view('admin.job', compact('microJob', 'title', 'pageTitle', 'breadCrumb'));
     }
 
     /**

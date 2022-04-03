@@ -14,11 +14,8 @@
                             <h4 class="card-title">Data Table</h4>
                             <h6 class="card-subtitle">Data table example</h6>
                         </div>
-                        <div class="col-6 text-right">
-                            <a class="btn text-white btn-primary" href="{{ route('admin.category.create') }}"><i class="mdi mdi-library-plus"></i> Add Category</a>
-                        </div>
                     </div>
-                    @include('admin.layouts.error')
+                    @include('user.layouts.error')
                     <div class="table-responsive m-t-40">
                         <table id="myTable" class="table table-bordered table-striped">
                             <thead>

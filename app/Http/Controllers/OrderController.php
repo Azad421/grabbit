@@ -12,19 +12,7 @@ class OrderController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:user']);
-    }
-
-    public function order(){
-        $orders = Order::all();
-        $pageTitle = "All Orders";
-        $breadCrumb = [
-            array('title' => 'Dashboard',
-                'route' => 'dashboard'),
-        ];
-        $title = "All Orders";
-
-        return view('user.orders', compact('orders', 'title', 'pageTitle', 'breadCrumb'));
+        $this->middleware(['auth:user', 'rule.employee']);
     }
 
     public function payment(Request $request){
@@ -34,36 +22,31 @@ class OrderController extends Controller
             return redirect()->back();
         }
         $title = "Make Payment";
-
-        $job = MicroJob::find($request->job_id);
         $order = New Order();
 
         $order->job_id = $job->job_id;
-        $order->user_id = Auth::user()->id;
+        $order->from_user = Auth::user()->id;
+        $order->to_user = $job->user_id;
         $order->amount = $job->budget;
         $order->payment = 'notPaid';
         $order->quantity = 1;
         $order->duration = $job->job_duration;
-        $order->status  = 2;
+        $order->status  = 1;
 
         if($order->save()){
-            return redirect()->route('order.show', $order->id);
+//            return redirect()->route('order.show', $order->id);
         }
 
-        return view('payment', compact('title', 'job'));
+        return view('payment', compact('title', 'order', 'job'));
     }
 
 
     public function create(Request $request){
 
-        $job = MicroJob::find($request->job_id);
-        $order = New Order();
+        $order = Order::find($request->order_id);
 
-        $order->job_id = $job->job_id;
-        $order->from_user = Auth::user()->id;
         $order->to_user = $job->user->id;
-        $order->amount = $job->budget;
-        $order->quantity = 1;
+        $order->payment = 'paid';
         $order->status  = 2;
 
         $order->save();
@@ -80,20 +63,6 @@ class OrderController extends Controller
 
 
         return response($request);
-    }
-
-    public function orderDetails($order){
-        $order = Order::where('id', $order)->get()->first();
-        if($order == null){
-            return redirect()->back();
-        }
-        $pageTitle = "Order Details";
-        $breadCrumb = [
-            array('title' => 'Dashboard',
-                'route' => 'dashboard'),
-        ];
-        $title = $order->job->job_title;
-        return view('user.single-order', compact('order', 'title', 'pageTitle', 'breadCrumb'));
     }
 
     public function destroy($order){

@@ -18,7 +18,7 @@ class CheckJobSeeker
     {
         $role = Auth('user')->user()->role->nickname;
         if($role != 'jobseeker'){
-            return redirect('user');
+            return redirect()->back()->with('alert-warning', 'Your role is Employee');
         }else{
             return $next($request);
         }

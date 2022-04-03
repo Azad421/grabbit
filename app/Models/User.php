@@ -61,7 +61,15 @@ class User extends Authenticatable
         return $this->hasOne(UserRole::class, 'id', 'user_role');
     }
 
+
+    public function status(){
+        return $this->hasOne(AccountStatus::class, 'id', 'acc_status');
+    }
+
     public function job(){
-        return $this->hasMany(MicroJob::class, 'id', 'user_id');
+        return $this->hasMany(MicroJob::class, 'user_id', 'id');
+    }
+    public function review(){
+        return $this->hasMany(Review::class, 'id_review', 'from_user');
     }
 }

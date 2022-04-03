@@ -11,10 +11,6 @@
                             <h4 class="card-title">Micro Jobs</h4>
                             <h6 class="card-subtitle">All micro jobs</h6>
                         </div>
-                        <div class="col-6 text-right">
-                            <a class="btn text-white btn-primary" href="{{ route('admin.microjob.create') }}"><i
-                                    class="mdi mdi-library-plus"></i> Add Job</a>
-                        </div>
                     </div>
                     @include('admin.layouts.error')
                     <div class="table-responsive">
@@ -52,12 +48,17 @@
                                                data-toggle="dropdown"
                                                role="button" aria-haspopup="true" aria-expanded="true">Action</a>
                                             <div class="dropdown-menu dropdown-menu-left">
-                                                <form action="{{ route('admin.job.approve', $job->job_id) }}" method="post">
+                                                <a class="dropdown-item" href="{{ route('admin.microjob.show', $job->job_id) }}"><i
+                                                        class="ti-eye"></i> View</a>
+                                                <form action="{{ route('admin.job.approve', $job->job_id) }}"
+                                                      method="post">
                                                     @csrf
-                                                    <button type="submit" class="dropdown-item"><i class="ti-check-box"></i> Approve
+                                                    <button type="submit" class="dropdown-item"><i
+                                                            class="ti-check-box"></i> Approve
                                                     </button>
                                                 </form>
-                                                <form action="{{ route('admin.job.reject', $job->job_id) }}" method="post">
+                                                <form action="{{ route('admin.job.reject', $job->job_id) }}"
+                                                      method="post">
                                                     @csrf
                                                     <button type="submit" class="dropdown-item"><i
                                                             class="ti-close"></i> Reject

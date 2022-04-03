@@ -35,7 +35,7 @@ class MessageController extends Controller
         }
         $lastMessage = $message->message;
 
-        return response(['status' => Response::HTTP_OK, 'user_image' => $user_image, 'user_name' => $user_name, 'message' => $lastMessage, 'time' => Carbon::parse($message->created_at)->format('d M h:i a')]);
+        return response(['status' => Response::HTTP_OK, 'user_image' => $user_image, 'user_name' => $user_name, 'message' => $lastMessage, 'time' => Carbon::parse($message->created_at)->setTimezone(config('app.localTimezone'))->format('d M h:i a')]);
     }
 
     public function faceMessage(Request $request)
@@ -66,7 +66,7 @@ class MessageController extends Controller
                 $user_name = "Me";
             }
             $lastMessage = $message->message;
-            array_push($message_content, ['name' => $user_name, 'image' => $user_image, 'message' => $lastMessage, 'time' => Carbon::parse($message->created_at)->format('d M h:i a')]);
+            array_push($message_content, ['name' => $user_name, 'image' => $user_image, 'message' => $lastMessage, 'time' => Carbon::parse($message->created_at)->setTimezone(config('app.localTimezone'))->format('d M h:i a')]);
         }
 
 

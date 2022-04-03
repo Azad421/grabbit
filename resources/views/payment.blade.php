@@ -28,7 +28,7 @@
 @endsection
 @section('script')
     <script
-        src="https://www.paypal.com/sdk/js?client-id=AXEwqag-Uwnw3o8l-vqPASF-BGJcgw_NkRgkj2FBFWe20HpLG3Z-8Db8vKU3ohybgJsuuypEaDGF2700&components=buttons"></script>
+        src="https://www.paypal.com/sdk/js?client-id=AXEwqag-Uwnw3o8l-vqPASF-BGJcgw_NkRgkj2FBFWe20HpLG3Z-8Db8vKU3ohybgJsuuypEaDGF2700&components=buttons&currency=SGD"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
 
@@ -45,7 +45,7 @@
                     purchase_units: [{
                         amount: {
                             value: '{{ $job->budget }}', // Can reference variables or functions. Example: `value: document.getElementById('...').value`
-                            currency_code: "USD",
+                            currency_code: "SGD",
                         }
                     }]
                 });
@@ -58,13 +58,14 @@
                     console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                     var transaction = orderData.purchase_units[0].payments.captures[0];
                     alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
-                    var job_id = '{{ $job->job_id }}';
+                    var order_id = '{{ $order->id }}';
+                    var token = '{{ csrf_token() }}';
                     $.ajax({
                         url: "/job/order",
                         type: "post",
                         data: {
-                            'job_id': job_id,
-                            '_token': 'zXVAqdSMLVQcyZJIDjRZAAspay4zB2JqneJnyyQr',
+                            'order_id': order_id,
+                            '_token': token,
                             'payment_id': transaction.id,
                             'transaction_status': transaction.status
                         },
@@ -79,7 +80,7 @@
             onCancel: function (data) {
                 Swal.fire({
                     title: 'Error!',
-                    text: 'Your Payment Is no completed',
+                    text: 'Your Payment Is not completed',
                     icon: 'error',
                     confirmButtonText: 'Ok'
                 })

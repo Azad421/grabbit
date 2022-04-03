@@ -62,7 +62,7 @@
                                             <div>{{ $message->message }}</div>
                                         </div>
                                         <div
-                                            class="chat-time">{{ \Carbon\Carbon::parse($message->created_at)->format('d M h:i a') }}</div>
+                                            class="chat-time">{{ \Carbon\Carbon::parse($message->created_at)->setTimezone(config('app.localTimezone'))->format('d M h:i a') }}</div>
                                     </li>
                                 @endforeach
                             </ul>

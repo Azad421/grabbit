@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\JobStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -26,7 +27,7 @@ class MicrojobFactory extends Factory
             'job_duration' => 2,
             'image' => 'service-2.jpg',
             'budget' => 200,
-            'status_id' => 1
+            'status_id' => JobStatus::where( 'nickname', 'approved')->first()->status_id,
         ];
     }
 }

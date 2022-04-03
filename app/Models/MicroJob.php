@@ -9,6 +9,8 @@ class MicroJob extends Model
 {
     use HasFactory;
 
+    protected $table = 'micro_jobs';
+    protected $connection = 'mysql';
     protected $fillable = ['user_id', 'job_title', 'slug', 'category', 'description', 'job_duration', 'image', 'budget', 'status_id'];
     protected $primaryKey = 'job_id';
     protected $keyType = 'string';
@@ -25,5 +27,8 @@ class MicroJob extends Model
 
     public function order(){
         return $this->hasMany(Order::class, 'job_id', 'job');
+    }
+    public function review(){
+        return $this->hasMany(Review::class, 'job_id', 'job_id');
     }
 }

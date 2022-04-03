@@ -24,6 +24,7 @@ class CreateOrderStatusesTable extends Migration
 
         DB::table('order_statuses')->insert(['name'=> 'Created', 'nickname' => 'created', 'description' => 'For Order']);
         DB::table('order_statuses')->insert(['name'=> 'Progressing', 'nickname' => 'progressing', 'description' => 'For Order']);
+        DB::table('order_statuses')->insert(['name'=> 'Delivered', 'nickname' => 'delivered', 'description' => 'For Order']);
         DB::table('order_statuses')->insert(['name'=> 'Completed', 'nickname' => 'completed', 'description' => 'For Order']);
     }
 

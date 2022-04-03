@@ -48,7 +48,7 @@ class ReviewController extends Controller
         $order = Order::where('id', $request->order)->first();
         $review->job_id = $order->job->job_id;
         $review->from_user = $from_user;
-        $review->to_user = $order->job->user->id;
+        $review->to_user = $request->to_user;
         $review->comments = $request->review;
         $review->rating = $request->rating;
         $review->status = 'accepted';

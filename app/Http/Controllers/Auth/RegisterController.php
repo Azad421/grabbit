@@ -44,6 +44,17 @@ class RegisterController extends Controller
     }
 
     /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        $title = "Register";
+        return view('auth.register', compact('title'));
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param array $data
@@ -74,7 +85,7 @@ class RegisterController extends Controller
 
         if ($user != null) {
             MailController::sendSignupEmail($user->name, $user->email, $user->verification_code);
-            return redirect()->back()->with('alert-success', 'your account has been created please check email for verification link');
+            return redirect()->back()->with('alert-success', 'your account has been created please check inbox for verification link');
         }
         return redirect()->back()->with('alert-danger', 'Something went wrong');
     }
